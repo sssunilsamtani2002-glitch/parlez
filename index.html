@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Parlez – French Tutor</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--bg:#f1f5fb;--card:#fff;--ink:#16223b;--mute:#5d6b86;--acc:#1f3f8f;--red:#d3283c;--ok:#16825a;--bad:#c0283a;--line:#d9e1ef;--soft:#e6edf9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1626;--card:#18223a;--ink:#e8eefb;--mute:#9aa8c6;--acc:#7da2f2;--red:#ff6b7d;--ok:#4cc790;--bad:#ff7d8c;--line:#2b3858;--soft:#202c49}}
+:root[data-theme="dark"]{--bg:#0f1626;--card:#18223a;--ink:#e8eefb;--mute:#9aa8c6;--acc:#7da2f2;--red:#ff6b7d;--ok:#4cc790;--bad:#ff7d8c;--line:#2b3858;--soft:#202c49}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0 0 8px;line-height:1.15}
+h1{font-size:30px;font-weight:800}h2{font-size:22px}h3{font-size:17px}
+.sub{color:var(--mute);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.row{display:flex;align-items:center;gap:10px}.sp{justify-content:space-between}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:10px 14px;font-weight:600}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.p{background:var(--acc);border-color:var(--acc);color:#fff}[data-theme="dark"] button.p{color:#0f1626}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.p{color:#0f1626}}
+button.ic{padding:6px 10px;border-radius:99px}
+button:disabled{opacity:.5}
+.pills{display:flex;gap:8px;margin-bottom:14px}.pills button{flex:1}.pills .on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fr{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:19px}
+.mute{color:var(--mute);font-size:14px}
+.tag{font-size:12px;font-weight:700;background:var(--soft);color:var(--acc);border-radius:6px;padding:2px 8px}
+.lock{opacity:.55}
+.v{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.v:first-child{border-top:0}.v>div{flex:1}
+input,textarea{width:100%;font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+.opt{display:block;width:100%;text-align:left;margin-bottom:8px}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,var(--card))}
+.bar{height:8px;background:var(--soft);border-radius:9px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--red)}
+.tutor{display:flex;gap:10px;margin:12px 0}.av{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:800;flex:none}
+.bub{background:var(--soft);border-radius:4px 14px 14px 14px;padding:10px 12px}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}
+.big{font-family:Fraunces,Georgia,serif;font-size:44px;font-weight:800}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;border:0;background:none;border-radius:10px;padding:8px 2px;font-size:13px;color:var(--mute)}nav button b{display:block;font-size:20px;font-weight:400}
+nav .on{color:var(--acc);background:var(--soft)}
+.out{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:600;min-height:34px}
+.ph{display:inline-block;background:var(--soft);color:var(--acc);border-radius:6px;padding:0 8px;font-size:14px;font-weight:700;margin-top:2px}
+.hero{background:linear-gradient(135deg,#1f3f8f,#3a62c4);color:#fff;border-radius:18px;padding:18px;margin-bottom:16px;border-bottom:5px solid #d3283c}.hero h1{color:#fff;margin:0}
+details summary{cursor:pointer;padding:4px 0;font-size:17px}details[open] summary{margin-bottom:6px}
+</style></head><body><main id="app"></main>
+<nav id="nav"></nav>
+<script>
+const LV=['A1','A2','B1'];
+const C=[
+{id:1,l:'A1',t:'Greetings and politeness',note:'Say bonjour when you enter a shop. Use vous with strangers and elders, tu with friends and family.',v:[['bonjour','hello / good day'],['bonsoir','good evening'],['salut','hi / bye (informal)'],['au revoir','goodbye'],['merci','thank you'],['s’il vous plaît','please'],['excusez-moi','excuse me'],['comment allez-vous ?','how are you? (formal)']]},
+{id:2,l:'A1',t:'Introducing yourself',note:'Je m’appelle means my name is. Use je suis for nationality and job, and j’ai for age: j’ai vingt ans.',v:[['je m’appelle','my name is'],['je suis indien','I am Indian'],['j’ai vingt ans','I am twenty years old'],['j’habite à Mumbai','I live in Mumbai'],['enchanté','pleased to meet you'],['je suis étudiant','I am a student'],['je parle anglais','I speak English'],['et vous ?','and you?']]},
+{id:3,l:'A2',t:'Food and restaurants',note:'Use je voudrais (I would like) to order politely. Un, une and des mean a and some; du, de la and des mean some of.',v:[['je voudrais un café','I would like a coffee'],['l’addition, s’il vous plaît','the bill, please'],['le pain','bread'],['le fromage','cheese'],['de l’eau','water'],['j’ai faim','I am hungry'],['j’ai soif','I am thirsty'],['c’est délicieux','it is delicious']]},
+{id:4,l:'A2',t:'Travel and directions',note:'Tournez means turn. À gauche is left, à droite is right, tout droit is straight ahead.',v:[['où est la gare ?','where is the station?'],['à gauche','to the left'],['à droite','to the right'],['tout droit','straight ahead'],['combien ça coûte ?','how much does it cost?'],['un billet de train','a train ticket'],['je suis perdu','I am lost'],['c’est loin ?','is it far?']]},
+{id:5,l:'B1',t:'Opinions and feelings',note:'Je pense que + a clause gives an opinion. Use parce que for because and mais for but.',v:[['je pense que','I think that'],['à mon avis','in my opinion'],['je suis d’accord','I agree'],['je ne suis pas d’accord','I disagree'],['parce que','because'],['c’est important','it is important'],['je suis content','I am happy'],['ça dépend','it depends']]},
+{id:6,l:'B1',t:'Work and plans',note:'Use aller + infinitive for the near future: je vais travailler means I am going to work.',v:[['je travaille dans un bureau','I work in an office'],['une réunion','a meeting'],['je vais voyager demain','I am going to travel tomorrow'],['à bientôt','see you soon'],['j’ai un rendez-vous','I have an appointment'],['pouvez-vous répéter ?','can you repeat?'],['je ne comprends pas','I do not understand'],['bonne chance','good luck']]}];
+const allV=C.flatMap(c=>c.v.map(x=>({fr:x[0],en:x[1],l:c.l,c:c.id})));
+const clean=e=>e.replace(/\s*\(.*?\)/g,'').replace(/\s*\/.*$/,'');
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,"'").replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim();
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+function sim(a,b){a=norm(a);b=norm(b);if(a===b)return 1;const m=[];for(let i=0;i<=a.length;i++){m[i]=[i];}for(let j=0;j<=b.length;j++)m[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return 1-m[a.length][b.length]/Math.max(a.length,b.length,1)}
+let S={tab:'learn',lvl:'A1',ch:null,pass:{},xp:0,fav:[],q:'',favOnly:false},E=null;
+try{const d=JSON.parse(localStorage.getItem('parlez')||'{}');S.pass=d.pass||{};S.xp=d.xp||0;S.fav=d.fav||[];S.st=d.st||0;S.last=d.last||''}catch(e){}
+{const t=new Date().toDateString();if(S.last!==t){S.st=S.last===new Date(Date.now()-864e5).toDateString()?S.st+1:1;S.last=t}setTimeout(()=>save())}
+const save=()=>{try{localStorage.setItem('parlez',JSON.stringify({pass:S.pass,xp:S.xp,fav:S.fav,st:S.st,last:S.last}))}catch(e){}};
+const $=s=>document.querySelector(s);
+function say(t,r){try{const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=r||.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function listen(cb,er){const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R){er('Speech recognition is not available in this browser. Type your answer instead.');return}try{const r=new R();r.lang='fr-FR';r.onresult=e=>cb(e.results[0][0].transcript);r.onerror=()=>er('I could not hear you. Try again, or type your answer.');r.start()}catch(e){er('Microphone unavailable. Type your answer instead.')}}
+const unlocked=l=>LV.indexOf(l)===0||S.pass[LV[LV.indexOf(l)-1]];
+const sp=(f,r)=>`say(${JSON.stringify(f).replace(/"/g,'&quot;')}${r?','+r:''})`;
+const EX={est:'eh',et:'ay',les:'lay',des:'day',mes:'may',ses:'say',ces:'say',je:'zhuh',le:'luh',de:'duh',ne:'nuh',me:'muh',te:'tuh',se:'suh',ce:'suh',que:'kuh',oui:'wee',six:'seess',dix:'deess'};
+const PR=[[/eaux?|au/y,'oh'],[/ou/y,'oo'],[/oi/y,'wah'],[/(?:ain|ein|aim)(?![aeiouyhnm])/y,'eh(n)'],[/(?:an|am|en|em)(?![aeiouyéèêhnm])/y,'ah(n)'],[/on(?![aeiouyéèêhnm])/y,'oh(n)'],[/(?:in|im)(?![aeiouyéèêhnm])/y,'eh(n)'],[/un(?![aeiouyhnm])/y,'uh(n)'],[/ill/y,'ee-y'],[/ll/y,'l'],[/ch/y,'sh'],[/gn/y,'ny'],[/ph/y,'f'],[/qu/y,'k'],[/th/y,'t'],[/ç/y,'s'],[/c(?=[eiyéèê])/y,'s'],[/g(?=[eiyéèê])/y,'zh'],[/ss/y,'s'],[/(?<=[aeiouyéèêàâîôû])s(?=[aeiouyéèêàâîôû])/y,'z'],[/eu|œu/y,'uh'],[/(?:é|ez$|er$|ai$)/y,'ay'],[/(?:è|ê|ai|ei)/y,'eh'],[/(?:à|â|a)/y,'ah'],[/(?:î|i|y)/y,'ee'],[/(?:ô|o)/y,'oh'],[/(?:û|ù|u)/y,'ü'],[/es?$/y,''],[/e/y,'uh'],[/h/y,''],[/j/y,'zh'],[/c/y,'k'],[/[stdxzp]$/y,''],[/./y,null]];
+function one(w){if(EX[w])return EX[w];let i=0,o='';while(i<w.length){for(const[r,v]of PR){r.lastIndex=i;const m=r.exec(w);if(m){o+=v===null?m[0]:v;i+=m[0].length;break}}}return o}
+const pron=t=>t.toLowerCase().replace(/[?!.,;:…]/g,'').split(/\s+/).filter(Boolean).map(x=>x.split('’').map(one).join('')).join(' ');
+const wr=(f,s,x='')=>`<div class="v"><div><div class="fr">${f}</div><span class="ph">${pron(f)}</span><div class="mute">${s}</div></div>${x}<button class="ic" aria-label="Slow" onclick="${sp(f,.5)}">🐢</button><button class="ic" aria-label="Listen" onclick="${sp(f)}">🔊</button></div>`;
+const esc=s=>s.replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
+const SND=[['u','tu','Say “ee” with your lips rounded as for “oo”.'],['ou','vous','Like “oo” in food.'],['r','rouge','A soft growl at the back of the throat, like a gentle gargle.'],['eu','peu','Like “uh” in fur, with rounded lips.'],['é','été','Like “ay” in say, short and crisp.'],['è, ê, ai','mère','Like “e” in bed.'],['an, en','dans','Nasal: let air flow through your nose. Do not say the n.'],['on','bon','Nasal “oh” with round lips. No n.'],['in, ain','vin','Nasal “eh”. No n.'],['oi','moi','Like “wah”.'],['ch','chat','Like “sh”.'],['j, g before e/i','je','Like the s in measure.'],['gn','montagne','Like “ny” in canyon.'],['ill','famille','Like “ee-y”.']];
+const RR=['Final consonants are usually silent: petit, grand, trois. Exceptions are C, R, F and L (think CaReFuL): avec, bonjour, neuf, bol.','A final e is silent: grande, petite. It makes the consonant before it sound: petit versus petite.','Liaison: a silent final consonant links to a vowel that follows. Vous avez sounds like “voo-zah-vay”.','Accents change the sound, not the stress: é = ay, è or ê = eh, à = ah, ç = s.','The letter h is always silent: hôtel sounds like “oh-tel”.','C before e or i is s (ciel); before a, o, u it is k (café). G works the same way: gîte versus gare.','Two vowels often make one sound: ou = oo, oi = wah, au or eau = oh, ai = eh.','A vowel plus n or m at the end of a syllable is nasal (an, on, in, un). Do not pronounce the n.'];
+const TN=[['Keep the rhythm even. Every syllable has about the same length and volume. English bounces; French flows.','bonjour','Say both syllables equally: bon-jour.'],['Stress only the last syllable of a phrase, and only slightly.','je m’appelle Marie','Lift gently on the last syllable.'],['Statements fall at the end. Your voice steps down.','Je parle français.','Falling tone ↘'],['Yes or no questions rise at the end.','Tu parles français ?','Rising tone ↗'],['Questions with où, quand or pourquoi fall.','Où est la gare ?','Falling tone ↘'],['In a list, rise on each item and fall on the last.','Du pain, du fromage et du vin.','↗ ↗ ↘'],['Posture: lips forward and rounded, tongue tip behind the lower teeth, jaw relaxed. Speak from the front of the mouth.'],['Practice routine: listen with 🔊, repeat with 🐢, then speak at normal speed and test yourself with the lab above.']];
+const EXP=[['Greet people',[['Bonjour, comment allez-vous ?','Hello, how are you?'],['Ravi de vous rencontrer','Nice to meet you']]],['Ask for things',[['Pouvez-vous m’aider ?','Can you help me?'],['Je cherche la gare','I am looking for the station']]],['Say what you want',[['Je voudrais un thé','I would like a tea'],['J’aimerais essayer ça','I would like to try this']]],['Express feelings',[['Je suis content','I am happy'],['J’ai peur','I am scared'],['Je suis fatigué','I am tired'],['Ça me plaît','I like it']]],['Agree and disagree',[['Bien sûr','Of course'],['Je suis d’accord','I agree'],['Je ne pense pas','I do not think so']]],['Handle trouble',[['Je ne comprends pas','I do not understand'],['Pouvez-vous parler plus lentement ?','Can you speak more slowly?'],['Comment dit-on ça ?','How do you say that?']]]];
+function sounds(){const d=(t,b,o)=>`<details class="card"${o?' open':''}><summary><b>${t}</b></summary>${b}</details>`;
+return `<h1>How to speak French</h1><p class="sub">Sounds, reading rules, tone and everyday expressions. Respellings are approximate: (n) means nasal, so do not say the n; ü is “ee” with rounded lips.</p>
+<div class="card"><h3>Pronunciation lab</h3><input id="lw" placeholder="Type any French word or phrase" onkeydown="if(event.key==='Enter')lab()"><div class="row" style="margin:10px 0"><button class="p" style="flex:1" onclick="lab()">Show how to say it</button><button style="flex:1" onclick="labMic()">🎤 Test me</button></div><div id="lo"></div><div id="lr" class="mute"></div></div>
+${d('1. The sounds of French',SND.map(s=>wr(s[1],s[0]+': '+s[2])).join(''),1)}${d('2. How to read words',RR.map(r=>`<p>${r}</p>`).join(''))}${d('3. French tone and rhythm',TN.map(t=>`<p>${t[0]}</p>${t[1]?wr(t[1],t[2]):''}`).join(''))}${d('4. Express yourself',EXP.map(g=>`<h3 style="margin-top:12px">${g[0]}</h3>`+g[1].map(p=>wr(p[0],p[1])).join('')).join(''))}`}
+function lab(){const v=$('#lw').value.trim();if(!v)return;$('#lo').innerHTML=`<div class="v"><div><div class="fr">${esc(v)}</div><span class="ph">${esc(pron(v))}</span></div><button class="ic" aria-label="Slow" onclick="${sp(v,.5).replace(/</g,'&lt;')}">🐢</button><button class="ic" aria-label="Listen" onclick="${sp(v).replace(/</g,'&lt;')}">🔊</button></div>`}
+function labMic(){const v=$('#lw').value.trim();if(!v){$('#lr').textContent='Type a word or phrase first, then test yourself.';return}listen(t=>{const p=Math.round(sim(t,v)*100);$('#lr').textContent=`I heard “${t}”: ${p}% match. ${p>=80?'Great pronunciation!':'Listen with 🐢 and try again.'}`},m=>{$('#lr').textContent=m})}
+/* ---------- views ---------- */
+function learn(){
+ if(S.ch){const c=C.find(x=>x.id===S.ch);return `<button onclick="S.ch=null;go()">‹ Chapters</button><h2 style="margin-top:14px">${c.t}</h2><span class="tag">${c.l}</span><p>${c.note}</p><div class="card">${c.v.map(w=>`${wr(w[0],w[1])}`).join('')}</div><div class="row"><button class="p" style="flex:1" onclick="startExam('qa',${c.id})">Practice quiz</button><button style="flex:1" onclick="startExam('verbal',${c.id})">Speaking practice</button></div>`}
+ const ok=unlocked(S.lvl);
+ return `<div class="hero"><h1>Parlez</h1><p style="margin:4px 0 12px">Learn French step by step. 🔥 ${S.st}-day streak · ⭐ ${S.xp} points</p><button onclick="S.tab='sounds';go()">New here? Learn how to pronounce French</button></div><div class="pills">${LV.map(l=>`<button class="${l===S.lvl?'on':''}" onclick="S.lvl='${l}';go()">${l}${unlocked(l)?'':' 🔒'}</button>`).join('')}</div>
+ ${ok?'':`<div class="card">Pass the ${LV[LV.indexOf(S.lvl)-1]} level exam (70% or more) to unlock ${S.lvl}.</div>`}
+ ${C.filter(c=>c.l===S.lvl).map(c=>`<div class="card ${ok?'':'lock'}"><div class="row sp"><div><h3>${c.t}</h3><div class="mute">${c.v.length} words and phrases</div></div><button ${ok?'':'disabled'} onclick="S.ch=${c.id};go()">Open</button></div></div>`).join('')}
+ <button class="p" ${ok?'':'disabled'} style="width:100%" onclick="startExam('qa',null,'${S.lvl}')">Take the ${S.lvl} level exam${S.pass[S.lvl]?' (passed ✓)':''}</button>`}
+function vocab(){
+ const q=norm(S.q);const L=allV.filter(w=>(!S.favOnly||S.fav.includes(w.fr))&&(!q||norm(w.fr).includes(q)||norm(w.en).includes(q)));
+ return `<h1>Vocabulary</h1><p class="sub">Search, listen and star words to review later.</p><input id="vq" placeholder="Search French or English" value="${S.q.replace(/"/g,'')}" oninput="S.q=this.value;vlist()"><div class="pills" style="margin-top:10px"><button class="${S.favOnly?'':'on'}" onclick="S.favOnly=false;go()">All words</button><button class="${S.favOnly?'on':''}" onclick="S.favOnly=true;go()">Starred</button></div><div class="card" id="vl">${vl(L)}</div>`}
+function vl(L){return L.length?L.map(w=>`${wr(w.fr,w.en+' · '+w.l,`<button class="ic" aria-label="Star" onclick="star(${JSON.stringify(w.fr).replace(/"/g,'&quot;')})">${S.fav.includes(w.fr)?'★':'☆'}</button>`)}`).join(''):'<p class="mute">No words yet. Star words in this list and they will appear here.</p>'}
+function vlist(){const q=norm(S.q);$('#vl').innerHTML=vl(allV.filter(w=>(!S.favOnly||S.fav.includes(w.fr))&&(!q||norm(w.fr).includes(q)||norm(w.en).includes(q))))}
+function star(f){S.fav=S.fav.includes(f)?S.fav.filter(x=>x!==f):[...S.fav,f];save();vlist()}
+function exams(){return `<h1>Exams</h1><p class="sub">Test what you know. Your tutor gives feedback after every answer.</p>
+ <div class="card"><h3>Question and answer exam</h3><p class="mute">Multiple choice, typing and dictation. Ten questions.</p><button class="p" onclick="startExam('qa',null,'ALL')">Start Q&amp;A exam</button></div>
+ <div class="card"><h3>Verbal exam</h3><p class="mute">Say each phrase in French out loud. The tutor listens and checks your pronunciation. You can type instead if you have no microphone.</p><button class="p" onclick="startExam('verbal',null,'ALL')">Start verbal exam</button></div>`}
+const EW={i:'je',you:'vous',he:'il',she:'elle',we:'nous',they:'ils',am:'suis',is:'est',are:'sont',the:'le',a:'un',and:'et',or:'ou',but:'mais',with:'avec',without:'sans',in:'dans',on:'sur',to:'à',of:'de',for:'pour',my:'mon',your:'votre',this:'ce',that:'que',what:'quoi',where:'où',when:'quand',why:'pourquoi',how:'comment',who:'qui',good:'bon',bad:'mauvais',big:'grand',small:'petit',very:'très',today:'aujourd’hui',tomorrow:'demain',yesterday:'hier',now:'maintenant',water:'eau',coffee:'café',tea:'thé',milk:'lait',bread:'pain',house:'maison',friend:'ami',family:'famille',work:'travail',book:'livre',school:'école',city:'ville',love:'aime',like:'aime',want:'veux',have:'ai',go:'vais',eat:'manger',drink:'boire',speak:'parle',read:'lire',write:'écrire',learn:'apprendre',see:'voir',yes:'oui',no:'non',hello:'bonjour',goodbye:'au revoir',please:'s’il vous plaît',thanks:'merci',sorry:'désolé',help:'aidez-moi',time:'temps',day:'jour',night:'nuit',morning:'matin',money:'argent',car:'voiture',train:'train',food:'nourriture',one:'un',two:'deux',three:'trois',four:'quatre',five:'cinq',six:'six',seven:'sept',eight:'huit',nine:'neuf',ten:'dix'};
+const PH={'how are you':'Comment allez-vous ?','i love you':'Je t’aime','i do not know':'Je ne sais pas','i dont know':'Je ne sais pas','do you speak english':'Parlez-vous anglais ?','good morning':'Bonjour','good night':'Bonne nuit','thank you very much':'Merci beaucoup','you are welcome':'De rien','youre welcome':'De rien','what is your name':'Comment vous appelez-vous ?','nice to meet you':'Enchanté','see you tomorrow':'À demain','i am happy':'Je suis content','i am tired':'Je suis fatigué','i am sorry':'Je suis désolé','how much is it':'Combien ça coûte ?','where is the toilet':'Où sont les toilettes ?','i need help':'J’ai besoin d’aide','what time is it':'Quelle heure est-il ?','i am from india':'Je viens d’Inde','i dont understand':'Je ne comprends pas','i do not understand':'Je ne comprends pas'};
+const M={...EW,...PH};allV.forEach(w=>{M[norm(clean(w.en)).replace(/'/g,'')]=w.fr});
+function translate(t){const ws=norm(t).replace(/'/g,'').split(' ').filter(Boolean);const out=[];let miss=0;for(let i=0;i<ws.length;){let hit=false;for(let n=Math.min(7,ws.length-i);n>0;n--){const k=ws.slice(i,i+n).join(' ');if(M[k]){out.push(M[k]);i+=n;hit=true;break}}if(!hit){out.push('['+ws[i]+']');miss++;i++}}let r=out.join(' ');r=r.charAt(0).toUpperCase()+r.slice(1);return{r,miss,full:out.length===1&&!miss}}
+function trans(){return `<h1>Translator</h1><p class="sub">English to French. Works best with common phrases and short sentences.</p><textarea id="ti" placeholder="Type English, for example: How are you?"></textarea><div class="row" style="margin:10px 0"><button class="p" style="flex:1" onclick="doT()">Translate</button><button onclick="$('#ti').value='';$('#to').textContent='';$('#tn').textContent=''">Clear</button></div><div class="card"><div class="out" id="to"></div><div class="mute" id="tn"></div><button class="ic" style="margin-top:8px" onclick="say($('#to').textContent)">🔊 Listen</button></div>`}
+function doT(){const t=$('#ti').value.trim();if(!t)return;const x=translate(t);$('#to').textContent=x.r;$('#tn').textContent=x.miss?'Words in [brackets] are not in my dictionary yet, and word order may need adjusting. Check longer sentences with a native speaker or tutor.':'Check longer sentences with a native speaker or tutor, as grammar can vary with context.'}
+/* ---------- exam engine ---------- */
+function build(kind,pool,n){return shuf(pool).slice(0,n).map((w,i)=>{
+ const t=kind==='verbal'?'say':['mc1','mc2','type','dict'][i%4];
+ if(t==='mc1'||t==='mc2'){const rev=t==='mc2';const o=shuf(allV.filter(x=>x.fr!==w.fr)).slice(0,3).map(x=>rev?x.fr:clean(x.en));const a=rev?w.fr:clean(w.en);return{t:'mc',p:rev?`How do you say “${clean(w.en)}” in French?`:`What does “${w.fr}” mean?`,o:shuf([...o,a]),a,fr:w.fr}}
+ return{t,p:t==='say'?`Say this in French: “${clean(w.en)}”`:t==='dict'?'Listen, then type what you hear.':`Write this in French: “${clean(w.en)}”`,a:w.fr,fr:w.fr}})}
+function startExam(kind,ch,lvl){let pool=ch?C.find(c=>c.id===ch).v.map(x=>({fr:x[0],en:x[1]})):lvl==='ALL'?allV.filter(w=>unlocked(w.l)):allV.filter(w=>w.l===lvl);
+ const n=Math.min(10,pool.length);E={kind,lvl:ch||lvl==='ALL'?null:lvl,ch,qs:build(kind,pool,n),i:0,sc:0,fb:null,title:kind==='verbal'?'Verbal exam':'Q&A exam'};S.tab='exam';go();const q=E.qs[0];if(q.t==='dict')setTimeout(()=>say(q.fr),300)}
+function exam(){
+ if(E.i>=E.qs.length){const p=Math.round(E.sc/E.qs.length*100);let msg=p>=70?'Très bien ! Excellent work.':'Keep practising. You will get there.';let extra='';if(E.lvl){if(p>=70){S.pass[E.lvl]=true;extra=`<p class="ok">${E.lvl} passed!${LV[LV.indexOf(E.lvl)+1]?' The next level is unlocked.':''}</p>`}else extra='<p class="no">You need 70% to pass the level exam.</p>'}S.xp+=E.sc*10;save();
+  return `<div class="card" style="text-align:center"><div class="big">${E.sc}/${E.qs.length}</div><p>${p}% · ${msg}</p>${extra}<div class="row"><button class="p" style="flex:1" onclick="E=null;S.tab='learn';go()">Back to lessons</button><button style="flex:1" onclick="startExam('${E.kind}',${E.ch||null},'${E.lvl||'ALL'}')">Try again</button></div></div>`}
+ const q=E.qs[E.i],f=E.fb;
+ let body='';
+ if(q.t==='mc')body=q.o.map(o=>`<button class="opt ${f?(o===q.a?'good':o===f.pick?'wrong':''):''}" ${f?'disabled':''} onclick="answer(${JSON.stringify(o).replace(/"/g,'&quot;')})">${o}</button>`).join('');
+ else body=`${q.t==='dict'?`<button style="margin-bottom:10px" onclick="${sp(q.fr)}">🔊 Play again</button>`:''}<input id="ans" autocomplete="off" autocapitalize="off" placeholder="${q.t==='say'?'Speak, or type here':'Type in French'}" ${f?'disabled':''} onkeydown="if(event.key==='Enter')answer($('#ans').value)"><div class="row" style="margin-top:10px">${q.t==='say'&&!f?`<button style="flex:1" onclick="mic()">🎤 Speak</button>`:''}${f?'':`<button class="p" style="flex:1" onclick="answer($('#ans').value)">Check</button>`}</div>`;
+ return `<div class="row sp"><h3>${E.title}</h3><span class="mute">${E.i+1} of ${E.qs.length}</span></div><div class="bar"><i style="width:${E.i/E.qs.length*100}%"></i></div>
+ <div class="tutor"><div class="av">C</div><div class="bub">${f?f.msg:q.p}</div></div>${body}
+ ${f?`<div class="card" style="margin-top:10px"><span class="${f.ok?'ok':'no'}">${f.ok?'Correct':'Not quite'}</span> · <span class="fr">${q.fr}</span> <button class="ic" onclick="${sp(q.fr)}">🔊</button></div><button class="p" style="width:100%" onclick="next()">${E.i+1<E.qs.length?'Next question':'See results'}</button>`:''}`}
+function answer(v){const q=E.qs[E.i];if(E.fb)return;v=(v||'').trim();if(!v&&q.t!=='mc')return;const ok=q.t==='mc'?v===q.a:sim(v,q.a)>=(q.t==='say'?.78:.9);if(ok)E.sc++;
+ E.fb={ok,pick:v,msg:ok?shuf(['Très bien !','Parfait !','Excellent !','Bravo !'])[0]:(q.t==='say'?`I heard “${v}”. Listen to the correct version and try again next time.`:'Pas tout à fait. Here is the right answer.')};go();if(!ok&&q.t==='say')say(q.fr)}
+function mic(){const b=$('#ans');listen(t=>{b.value=t;answer(t)},m=>{E.fbErr=m;alert(m)})}
+function next(){E.i++;E.fb=null;go();const q=E.qs[E.i];if(q&&q.t==='dict')setTimeout(()=>say(q.fr),300)}
+/* ---------- shell ---------- */
+const T=[['learn','📖','Learn'],['sounds','🗣️','Sounds'],['vocab','🔤','Vocab'],['exams','🎓','Exams'],['trans','🌐','Translate']];
+function go(){const v=S.tab==='exam'&&E?exam:{learn,vocab,sounds,exams,trans,exam:exams}[S.tab];$('#app').innerHTML=v();
+ $('#nav').innerHTML=T.map(t=>`<button class="${(S.tab===t[0]||(S.tab==='exam'&&t[0]==='exams'))?'on':''}" onclick="S.tab='${t[0]}';S.ch=null;go();scrollTo(0,0)"><b>${t[1]}</b>${t[2]}</button>`).join('');
+ const a=$('#ans');if(a&&!E.fb)a.focus({preventScroll:true})}
+go();
+</script></body></html>
